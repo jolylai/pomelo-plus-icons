@@ -1,0 +1,9 @@
+{
+  "name": "pomelo-plus-icons",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "esno": "^0.14.1"
+  }
+}
