@@ -1,0 +1,16 @@
+<template>
+  { "name": "@element-plus/icons-svg", "version": "0.2.7", "description": "SVG
+  Icon library for Element Plus", "homepage": "https://element-plus.org/",
+  "keywords": [ "icon", "svg", "element-plus" ], "license": "MIT", "repository":
+  { "type": "git", "url":
+  "https://github.com/element-plus/element-plus-icons.git" }, "files": [ "*.svg"
+  ], "scripts": { "build": "" } }
+</template>
+
+<script lang="'ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: "PackageJson"
+})
+</script>

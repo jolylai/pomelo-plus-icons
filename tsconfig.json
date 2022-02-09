@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "target": "ES2018",
+    "sourceMap": true,
+    "lib": ["ES2018", "DOM"],
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["./scripts/**/*"],
+  "exclude": ["node_modules"]
+}
