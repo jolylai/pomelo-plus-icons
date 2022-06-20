@@ -29,7 +29,6 @@ const buildBundle = async () => {
       },
       outdir: pathOutput,
     };
-
     if (format === "iife") {
       options.plugins!.push(
         GlobalsPlugin({
@@ -40,10 +39,10 @@ const buildBundle = async () => {
     } else {
       options.external = ["vue"];
     }
+
     return options;
   };
-
-  const doBuild = async (minify: boolean) =>
+  const doBuild = async (minify: boolean) => {
     await Promise.all([
       build({
         ...getBuildOptions("esm"),
@@ -51,7 +50,21 @@ const buildBundle = async () => {
         minify,
         sourcemap: minify,
       }),
+      build({
+        ...getBuildOptions("iife"),
+        entryNames: `[name].iife${minify ? ".min" : ""}`,
+        minify,
+        sourcemap: minify,
+      }),
+      build({
+        ...getBuildOptions("cjs"),
+        entryNames: `[name]${minify ? ".min" : ""}`,
+        outExtension: { ".js": ".cjs" },
+        minify,
+        sourcemap: minify,
+      }),
     ]);
+  };
 
   return Promise.all([doBuild(true), doBuild(false)]);
 };

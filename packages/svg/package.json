@@ -1,0 +1,22 @@
+{
+  "name": "@pomelo-plus/icons-svg",
+  "version": "0.0.1",
+  "description": "SVG Icon library for Element Plus",
+  "homepage": "https://element-plus.org/",
+  "keywords": [
+    "icon",
+    "svg",
+    "pomelo-plus"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jolylai/pomelo-plus-icons.git"
+  },
+  "files": [
+    "*.svg"
+  ],
+  "scripts": {
+    "build": ""
+  }
+}

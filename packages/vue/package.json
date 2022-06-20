@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "pnpm run build:generate",
+    "build": "pnpm run build:generate && run-p build:build build:types",
     "build:generate": "tsx build/generate.ts",
     "build:build": "tsx build/build.ts",
     "build:types": "vue-tsc --declaration --emitDeclarationOnly"
@@ -16,6 +16,7 @@
     "esbuild": "^0.14.46",
     "esbuild-plugin-globals": "^0.1.1",
     "tsx": "^3.4.3",
-    "unplugin-vue": "^0.2.2"
+    "unplugin-vue": "^0.2.2",
+    "vue-tsc": "^0.38.1"
   }
 }

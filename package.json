@@ -3,6 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "dev": "pnpm run -C playground dev",
+    "build": "pnpm run -C ./packages/vue build",
+    "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx,.json --max-warnings 0",
+    "lint:fix": "eslint --fix . --ext .vue,.js,.ts,.jsx,.tsx,.json --max-warnings 0",
+    "format": "prettier --write . && pnpm run -C ./packages/svg optimize",
+    "release": "standard-version"
+  },
   "devDependencies": {
     "@types/fs-extra": "^9.0.13",
     "@types/prettier": "^2.4.4",
