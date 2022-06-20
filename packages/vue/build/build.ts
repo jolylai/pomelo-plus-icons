@@ -1,0 +1,62 @@
+import { emptyDir } from "fs-extra";
+import path from "path";
+import vue from "unplugin-vue/esbuild";
+import GlobalsPlugin from "esbuild-plugin-globals";
+
+import { Format, BuildOptions, build } from "esbuild";
+import { version } from "../package.json";
+import { pathSrc, pathOutput } from "./paths";
+
+const buildBundle = async () => {
+  const getBuildOptions = (format: Format) => {
+    const options: BuildOptions = {
+      entryPoints: [
+        path.resolve(pathSrc, "index.ts"),
+        // path.resolve(pathSrc, "global.ts"),
+      ],
+      target: "es2018",
+      platform: "neutral",
+      plugins: [
+        vue({
+          isProduction: true,
+        }),
+      ],
+      bundle: true,
+      format,
+      minifySyntax: true,
+      banner: {
+        js: `/*! Element Plus Icons Vue v${version} */\n`,
+      },
+      outdir: pathOutput,
+    };
+
+    if (format === "iife") {
+      options.plugins!.push(
+        GlobalsPlugin({
+          vue: "Vue",
+        })
+      );
+      options.globalName = "ElementPlusIconsVue";
+    } else {
+      options.external = ["vue"];
+    }
+    return options;
+  };
+
+  const doBuild = async (minify: boolean) =>
+    await Promise.all([
+      build({
+        ...getBuildOptions("esm"),
+        entryNames: `[name]${minify ? ".min" : ""}`,
+        minify,
+        sourcemap: minify,
+      }),
+    ]);
+
+  return Promise.all([doBuild(true), doBuild(false)]);
+};
+
+(async () => {
+  await emptyDir(pathOutput);
+  await buildBundle();
+})();

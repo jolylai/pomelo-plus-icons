@@ -1,0 +1,21 @@
+{
+  "name": "vue",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "pnpm run build:generate",
+    "build:generate": "tsx build/generate.ts",
+    "build:build": "tsx build/build.ts",
+    "build:types": "vue-tsc --declaration --emitDeclarationOnly"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.14.46",
+    "esbuild-plugin-globals": "^0.1.1",
+    "tsx": "^3.4.3",
+    "unplugin-vue": "^0.2.2"
+  }
+}
