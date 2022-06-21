@@ -25,7 +25,7 @@ const buildBundle = async () => {
       format,
       minifySyntax: true,
       banner: {
-        js: `/*! Element Plus Icons Vue v${version} */\n`,
+        js: `/*! Pomelo Plus Icons Vue v${version} */\n`,
       },
       outdir: pathOutput,
     };

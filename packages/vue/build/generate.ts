@@ -5,7 +5,7 @@ import camelcase from "camelcase";
 import { format } from "prettier";
 import type { BuiltInParserName } from "prettier";
 
-import { pathComponents, pathSrc, pathSvg } from "./paths";
+import { pathComponents, pathSvg } from "./paths";
 import { ensureDir } from "fs-extra";
 
 const getSvgFiles = async () => {
