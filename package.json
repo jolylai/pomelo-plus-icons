@@ -1,5 +1,5 @@
 {
-  "name": "pomelo-plus-icons",
+  "name": "@pomelo-plus/icons-monorepo",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

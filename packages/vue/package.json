@@ -1,8 +1,10 @@
 {
-  "name": "vue",
+  "name": "@pomelo-plus/icons-vue",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "index.d.ts",
   "scripts": {
     "build": "pnpm run build:generate && run-p build:build build:types",
     "build:generate": "tsx build/generate.ts",
