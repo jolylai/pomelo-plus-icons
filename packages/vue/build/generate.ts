@@ -5,7 +5,8 @@ import camelcase from "camelcase";
 import { format } from "prettier";
 import type { BuiltInParserName } from "prettier";
 
-import { pathSrc, pathSvg } from "./paths";
+import { pathComponents, pathSrc, pathSvg } from "./paths";
+import { ensureDir } from "fs-extra";
 
 const getSvgFiles = async () => {
   return await globby("*.svg", {
@@ -46,7 +47,11 @@ const transformToVueComponent = async (file: string) => {
 
   const vue = formatCode(code, "vue");
 
-  await writeFile(path.resolve(pathSrc, `${filename}.vue`), vue, "utf-8");
+  await writeFile(
+    path.resolve(pathComponents, `${filename}.vue`),
+    vue,
+    "utf-8"
+  );
 };
 
 const generateEntry = async (files: string[]) => {
@@ -57,15 +62,19 @@ const generateEntry = async (files: string[]) => {
     })
     .join("\n");
 
-  await writeFile(path.resolve(pathSrc, "index.ts"), formatCode(code), "utf-8");
+  await writeFile(
+    path.resolve(pathComponents, "index.ts"),
+    formatCode(code),
+    "utf-8"
+  );
 };
 
 (async () => {
-  await emptyDir(pathSrc);
+  await ensureDir(pathComponents);
+  await emptyDir(pathComponents);
 
   // 1、获取所有svg 文件
   const files = await getSvgFiles();
-  console.log("files: ", files);
 
   // 2、将 svg 文件转换成 vue 文件
   await Promise.all(files.map((file) => transformToVueComponent(file)));

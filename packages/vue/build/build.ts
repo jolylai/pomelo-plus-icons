@@ -12,7 +12,7 @@ const buildBundle = async () => {
     const options: BuildOptions = {
       entryPoints: [
         path.resolve(pathSrc, "index.ts"),
-        // path.resolve(pathSrc, "global.ts"),
+        path.resolve(pathSrc, "global.ts"),
       ],
       target: "es2018",
       platform: "neutral",
