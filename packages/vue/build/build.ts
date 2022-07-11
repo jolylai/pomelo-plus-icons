@@ -1,11 +1,13 @@
-import { emptyDir } from "fs-extra";
 import path from "path";
-import vue from "unplugin-vue/esbuild";
+import consola from "consola";
+import chalk from "chalk";
+import { build } from "esbuild";
 import GlobalsPlugin from "esbuild-plugin-globals";
-
-import { Format, BuildOptions, build } from "esbuild";
+import vue from "unplugin-vue/esbuild";
+import { emptyDir } from "fs-extra";
 import { version } from "../package.json";
-import { pathSrc, pathOutput } from "./paths";
+import { pathOutput, pathSrc } from "./paths";
+import type { BuildOptions, Format } from "esbuild";
 
 const buildBundle = async () => {
   const getBuildOptions = (format: Format) => {
@@ -35,7 +37,7 @@ const buildBundle = async () => {
           vue: "Vue",
         })
       );
-      options.globalName = "ElementPlusIconsVue";
+      options.globalName = "PomeloPlusIconsVue";
     } else {
       options.external = ["vue"];
     }
@@ -70,6 +72,8 @@ const buildBundle = async () => {
 };
 
 (async () => {
+  consola.info(chalk.blue("cleaning dist..."));
   await emptyDir(pathOutput);
+  consola.info(chalk.blue("building..."));
   await buildBundle();
 })();
